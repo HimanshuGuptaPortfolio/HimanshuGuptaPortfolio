@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Himanshu Gupta, Senior Software Engineer: .NET, React, Azure and AI.">
+    <style>
+        :root {
+            color-scheme: light
+        }
+
+        body {
+            margin: 0
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        [hidden] {
+            display: none !important
+        }
+    </style>
+    <title>Himanshu Gupta</title>
+    <meta name="claude:viewport-fit-sides" content="cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <style>
+        /* Layout: blueprint sheet — left-aligned single column, mono annotations in the margin, one cobalt accent */
+        :root {
+            --bg: #eef1f4;
+            --surface: #f8f9fb;
+            --ink: #0f1b28;
+            --muted: #566271;
+            --line: #cfd6de;
+            --accent: #2b4fd8;
+            --accent-soft: #dfe5fb;
+            --warm: #b86a14;
+            --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+            --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+            --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0c131b;
+                --surface: #131d28;
+                --ink: #e6ebf1;
+                --muted: #93a0af;
+                --line: #25323f;
+                --accent: #7d97ff;
+                --accent-soft: #1c2747;
+                --warm: #e8a64f;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0c131b;
+            --surface: #131d28;
+            --ink: #e6ebf1;
+            --muted: #93a0af;
+            --line: #25323f;
+            --accent: #7d97ff;
+            --accent-soft: #1c2747;
+            --warm: #e8a64f;
+            color-scheme: dark
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 16px/1.6 var(--body);
+            background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 48px 48px;
+            background-position: -1px -1px;
+            background-attachment: fixed
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            opacity: .86;
+            z-index: -1;
+            pointer-events: none
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding-block: 0 64px;
+            padding-left: max(20px, env(safe-area-inset-left, 0px));
+            padding-right: max(20px, env(safe-area-inset-right, 0px))
+        }
+
+        a {
+            color: var(--accent)
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 2px
+        }
+
+        .mono {
+            font-family: var(--mono)
+        }
+
+        .label {
+            font: 500 12px/1.4 var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        /* nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding-block: 22px;
+            flex-wrap: wrap
+        }
+
+        nav .mark {
+            font: 800 18px var(--display);
+            letter-spacing: -.02em;
+            text-decoration: none;
+            color: var(--ink)
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap
+        }
+
+        nav ul a {
+            font: 500 13px var(--mono);
+            color: var(--muted);
+            text-decoration: none
+        }
+
+        nav ul a:hover {
+            color: var(--accent)
+        }
+
+        /* hero */
+        .hero {
+            padding-block: 56px 40px;
+            display: grid;
+            gap: 28px
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font: 500 13px var(--mono);
+            color: var(--ink);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 6px 12px;
+            border-radius: 999px;
+            width: max-content;
+            max-width: 100%
+        }
+
+        .status i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1f9d5a;
+            box-shadow: 0 0 0 4px color-mix(in srgb, #1f9d5a 22%, transparent)
+        }
+
+        h1 {
+            font: 800 clamp(44px, 8.4vw, 104px)/.92 var(--display);
+            letter-spacing: -.045em;
+            margin: 0;
+            text-wrap: balance
+        }
+
+        h1 span {
+            color: var(--accent)
+        }
+
+        .lede {
+            font-size: clamp(18px, 2.2vw, 22px);
+            line-height: 1.5;
+            max-width: 40ch;
+            margin: 0;
+            color: var(--ink)
+        }
+
+        .lede em {
+            font-style: normal;
+            color: var(--muted)
+        }
+
+        .cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            font: 500 15px var(--body);
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            background: transparent;
+            cursor: pointer
+        }
+
+        .btn.primary {
+            background: var(--ink);
+            color: var(--bg)
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent)
+        }
+
+        .btn.primary:hover {
+            background: var(--accent);
+            color: #fff
+        }
+
+        /* pipeline strip: the subject's own world — message flow from source to target */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px
+        }
+
+        .flow .node {
+            font: 500 12px var(--mono);
+            white-space: nowrap;
+            padding: 7px 11px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            border-radius: 4px;
+            color: var(--muted)
+        }
+
+        .flow .node.hot {
+            color: var(--accent);
+            border-color: var(--accent)
+        }
+
+        .flow .edge {
+            flex: 0 0 28px;
+            height: 1px;
+            background: var(--line);
+            position: relative;
+            overflow: hidden
+        }
+
+        .flow .edge::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -10px;
+            width: 10px;
+            height: 3px;
+            background: var(--accent);
+            animation: pulse 2.4s linear infinite
+        }
+
+        .flow .edge:nth-of-type(4)::after {
+            animation-delay: .4s
+        }
+
+        .flow .edge:nth-of-type(6)::after {
+            animation-delay: .8s
+        }
+
+        .flow .edge:nth-of-type(8)::after {
+            animation-delay: 1.2s
+        }
+
+        @keyframes pulse {
+            to {
+                left: 100%
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            .flow .edge::after {
+                animation: none;
+                display: none
+            }
+        }
+
+        /* impact */
+        .impact {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--line);
+            margin-block: 24px 0
+        }
+
+        .impact div {
+            padding: 22px 18px 22px 0;
+            display: grid;
+            gap: 4px
+        }
+
+        .impact div+div {
+            padding-left: 18px;
+            border-left: 1px solid var(--line)
+        }
+
+        .impact b {
+            font: 700 clamp(32px, 4.4vw, 48px)/1 var(--display);
+            letter-spacing: -.03em;
+            font-variant-numeric: tabular-nums
+        }
+
+        .impact b small {
+            font-size: .5em;
+            color: var(--warm);
+            margin-left: 2px
+        }
+
+        .impact span {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.4
+        }
+
+        @media (max-width:720px) {
+            .impact {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .impact div:nth-child(3) {
+                padding-left: 0;
+                border-left: 0
+            }
+
+            .impact div:nth-child(n+3) {
+                border-top: 1px solid var(--line)
+            }
+        }
+
+        /* sections */
+        section {
+            padding-top: 80px;
+            scroll-margin-top: 16px
+        }
+
+        .sec-head {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 24px;
+            align-items: baseline;
+            margin-bottom: 28px
+        }
+
+        h2 {
+            font: 700 clamp(28px, 4vw, 40px)/1.05 var(--display);
+            letter-spacing: -.03em;
+            margin: 0;
+            text-wrap: balance
+        }
+
+        @media (max-width:720px) {
+            .sec-head {
+                grid-template-columns: 1fr;
+                gap: 6px
+            }
+        }
+
+        /* about */
+        .about {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 24px
+        }
+
+        .about p {
+            margin: 0 0 14px;
+            max-width: 62ch
+        }
+
+        @media (max-width:720px) {
+            .about {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* projects */
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 22px
+        }
+
+        .chip {
+            font: 500 13px var(--mono);
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--muted);
+            cursor: pointer
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink)
+        }
+
+        .chip:hover {
+            border-color: var(--accent)
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px
+        }
+
+        @media (max-width:760px) {
+            .projects {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        .proj {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0
+        }
+
+        .proj header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: baseline;
+            flex-wrap: wrap
+        }
+
+        .proj .client {
+            font: 500 12px var(--mono);
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .proj h3 {
+            font: 700 21px/1.2 var(--display);
+            letter-spacing: -.015em;
+            margin: 0;
+            text-wrap: balance
+        }
+
+        .proj p {
+            margin: 0;
+            color: var(--ink);
+            font-size: 15px
+        }
+
+        .proj .metric {
+            font: 500 13px var(--mono);
+            color: var(--warm);
+            white-space: nowrap
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 6px
+        }
+
+        .stack span {
+            font: 400 12px var(--mono);
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--accent-soft);
+            color: var(--accent)
+        }
+
+        .empty {
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 14px
+        }
+
+        /* timeline */
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-left: 1px solid var(--line);
+            margin-left: 6px
+        }
+
+        .timeline li {
+            position: relative;
+            padding: 0 0 30px 26px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 6px 24px
+        }
+
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 7px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--muted)
+        }
+
+        .timeline li.now::before {
+            border-color: var(--accent);
+            background: var(--accent)
+        }
+
+        .timeline .when {
+            font: 500 13px var(--mono);
+            color: var(--muted);
+            font-variant-numeric: tabular-nums
+        }
+
+        .timeline h3 {
+            font: 700 19px/1.25 var(--display);
+            margin: 0;
+            letter-spacing: -.01em
+        }
+
+        .timeline .org {
+            color: var(--muted);
+            font-size: 15px
+        }
+
+        .timeline .work {
+            font-size: 15px;
+            margin: 6px 0 0;
+            max-width: 60ch
+        }
+
+        @media (max-width:720px) {
+            .timeline li {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+            border-top: 1px solid var(--ink)
+        }
+
+        .skills div {
+            padding: 20px 20px 22px 0;
+            border-bottom: 1px solid var(--line);
+            min-width: 0
+        }
+
+        .skills h3 {
+            font: 500 12px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 8px
+        }
+
+        .skills p {
+            margin: 0;
+            font-size: 15px
+        }
+
+        @media (max-width:820px) {
+            .skills {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media (max-width:520px) {
+            .skills {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* contact */
+        .contact {
+            background: var(--ink);
+            color: var(--bg);
+            border-radius: 10px;
+            padding: clamp(28px, 5vw, 56px);
+            display: grid;
+            gap: 22px;
+            margin-top: 80px
+        }
+
+        .contact h2 {
+            color: var(--bg);
+            font-size: clamp(30px, 5vw, 52px);
+            max-width: 18ch
+        }
+
+        .contact p {
+            margin: 0;
+            max-width: 52ch;
+            opacity: .82
+        }
+
+        .contact .rows {
+            display: grid;
+            gap: 10px
+        }
+
+        .contact .row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font: 500 15px var(--mono)
+        }
+
+        .contact .row .k {
+            opacity: .6;
+            width: 84px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .contact .row .v {
+            user-select: all;
+            word-break: break-all
+        }
+
+        .contact a {
+            color: var(--bg)
+        }
+
+        .copy {
+            font: 500 12px var(--mono);
+            background: transparent;
+            color: var(--bg);
+            border: 1px solid color-mix(in srgb, var(--bg) 40%, transparent);
+            border-radius: 4px;
+            padding: 4px 10px;
+            cursor: pointer
+        }
+
+        .copy:hover {
+            border-color: var(--bg)
+        }
+
+        footer {
+            margin-top: 28px;
+            font: 400 12px var(--mono);
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+    </style>
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+            gap: clamp(24px, 4vw, 48px);
+            align-items: start
+        }
+
+        @media (max-width:820px) {
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 22px;
+            min-width: 0
+        }
+
+        form.msg {
+            display: grid;
+            gap: 14px;
+            min-width: 0
+        }
+
+        .msg .two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        @media (max-width:520px) {
+            .msg .two {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .msg label {
+            display: grid;
+            gap: 6px;
+            font: 500 12px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--bg);
+            opacity: .85
+        }
+
+        .msg input,
+        .msg textarea,
+        .msg select {
+            font: 400 15px var(--body);
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 8%, transparent);
+            border: 1px solid color-mix(in srgb, var(--bg) 28%, transparent);
+            border-radius: 6px;
+            padding: 11px 12px;
+            width: 100%;
+            text-transform: none;
+            letter-spacing: 0
+        }
+
+        .msg select option {
+            color: #0f1b28
+        }
+
+        .msg textarea {
+            min-height: 140px;
+            resize: vertical
+        }
+
+        .msg input:focus,
+        .msg textarea:focus,
+        .msg select:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+            border-color: transparent
+        }
+
+        .msg .send {
+            justify-self: start;
+            font: 600 15px var(--body);
+            padding: 12px 22px;
+            border-radius: 6px;
+            border: 0;
+            background: var(--bg);
+            color: var(--ink);
+            cursor: pointer
+        }
+
+        .msg .send:hover {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .msg .send[disabled] {
+            opacity: .6;
+            cursor: wait
+        }
+
+        .msg .note {
+            font: 400 14px var(--body);
+            margin: 0;
+            min-height: 1.4em
+        }
+
+        .msg .note.ok {
+            color: #7fe0a6
+        }
+
+        .msg .note.err {
+            color: #ffb4a2
+        }
+
+        .contact-info .row {
+            gap: 4px 12px
+        }
+
+        .contact-info .row .k {
+            width: 100%
+        }
+
+        .hp {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wrap">
+        <nav aria-label="Primary">
+            <a class="mark" href="#top">HG<span style="color:var(--accent)">.</span></a>
+            <ul>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="hero" id="top">
+            <div class="status"><i aria-hidden="true"></i>Available for freelance projects</div>
+            <h1>Himanshu Gupta<span>.</span></h1>
+            <p class="lede">Senior Software Engineer. I build enterprise systems on .NET, React and Azure, and ship AI
+                features that hold up in production. <em>5+ years, Acumant and Infosys.</em></p>
+            <div class="cta">
+                <a class="btn primary" href="#contact">Start a project</a>
+                <a class="btn" href="#work">See selected work</a>
+            </div>
+            <div class="flow"
+                aria-label="A typical pipeline I build: Teams transcript to Azure Function to Azure OpenAI to SharePoint">
+                <span class="node">Teams transcript</span><span class="edge"></span>
+                <span class="node">Service Bus</span><span class="edge"></span>
+                <span class="node">Azure Function</span><span class="edge"></span>
+                <span class="node hot">Azure OpenAI</span><span class="edge"></span>
+                <span class="node">SharePoint</span>
+            </div>
+        </header>
+
+        <div class="impact" role="list" aria-label="Measured results">
+            <div role="listitem"><b>60<small>%</small></b><span>fewer HR support tickets after the OpenAI chatbot
+                    launch</span></div>
+            <div role="listitem"><b>40<small>%</small></b><span>faster end-user response time on Camfil backend
+                    services</span></div>
+            <div role="listitem"><b>40<small>%</small></b><span>faster incident response with custom alerting and log
+                    monitoring</span></div>
+            <div role="listitem"><b>30<small>%</small></b><span>shorter SQL query times in the BP Oracle-to-Postgres
+                    migration</span></div>
+        </div>
+
+        <section id="about" aria-labelledby="about-h">
+            <div class="about">
+                <span class="label" id="about-h">About</span>
+                <div>
+                    <p>I work across the stack: REST APIs and microservices in ASP.NET Core, front ends in React, and
+                        cloud-native services on Azure. Most of my projects connect systems that were never designed to
+                        talk to each other, such as ERP to e-commerce, Teams to SharePoint, or five knowledge sources
+                        behind one search box.</p>
+                    <p>Lately that work has centred on AI. I've led teams building retrieval-augmented chatbots and LLM
+                        pipelines with Azure OpenAI and Azure AI Search, from prototype through client UAT and
+                        production CI/CD. I also review code, mentor developers, and own production issues through to
+                        root cause.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" aria-labelledby="work-h">
+            <div class="sec-head"><span class="label">Selected work</span>
+                <h2 id="work-h">Projects for ABB, Camfil, Scania and BP</h2>
+            </div>
+            <div class="filters" role="group" aria-label="Filter projects">
+                <button class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
+                <button class="chip" id="f-ai" data-f="ai" aria-pressed="false">AI &amp; LLM</button>
+                <button class="chip" id="f-net" data-f="net" aria-pressed="false">.NET</button>
+                <button class="chip" id="f-react" data-f="react" aria-pressed="false">React</button>
+                <button class="chip" id="f-data" data-f="data" aria-pressed="false">Data &amp; SQL</button>
+            </div>
+            <div class="projects" id="projects"></div>
+        </section>
+
+        <section id="experience" aria-labelledby="exp-h">
+            <div class="sec-head"><span class="label">Experience</span>
+                <h2 id="exp-h">Five years, four roles</h2>
+            </div>
+            <ol class="timeline">
+                <li class="now"><span class="when">04/2025 – Present</span>
+                    <div>
+                        <h3>Senior Software Engineer</h3>
+                        <div class="org">Acumant Technologies</div>
+                        <p class="work">Leads delivery of AI solutions for ABB and full-stack work for Camfil. Mentors
+                            junior developers and runs code reviews.</p>
+                    </div>
+                </li>
+                <li><span class="when">08/2023 – 04/2025</span>
+                    <div>
+                        <h3>Software Engineer I</h3>
+                        <div class="org">Acumant Technologies</div>
+                        <p class="work">Integration APIs for Scania and Camfil, an OpenAI HR chatbot, and D365 front-end
+                            work for Danish Agro.</p>
+                    </div>
+                </li>
+                <li><span class="when">12/2022 – 08/2023</span>
+                    <div>
+                        <h3>Senior Systems Engineer</h3>
+                        <div class="org">Infosys Limited</div>
+                        <p class="work">Led the well-lifecycle tracking module for British Petroleum's Well Connected
+                            System.</p>
+                    </div>
+                </li>
+                <li><span class="when">07/2021 – 12/2022</span>
+                    <div>
+                        <h3>Systems Engineer</h3>
+                        <div class="org">Infosys Limited</div>
+                        <p class="work">Oracle to PostgreSQL data migration for British Petroleum.</p>
+                    </div>
+                </li>
+                <li><span class="when">2017 – 2021</span>
+                    <div>
+                        <h3>B.Tech, Computer Science and Engineering</h3>
+                        <div class="org">76.4%</div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section id="skills" aria-labelledby="skills-h">
+            <div class="sec-head"><span class="label">Toolkit</span>
+                <h2 id="skills-h">What I work with</h2>
+            </div>
+            <div class="skills">
+                <div>
+                    <h3>Backend</h3>
+                    <p>ASP.NET Core, .NET Core, Web API, Entity Framework Core, RESTful services, microservices</p>
+                </div>
+                <div>
+                    <h3>Languages</h3>
+                    <p>C#, Python, JavaScript, SQL</p>
+                </div>
+                <div>
+                    <h3>Frontend</h3>
+                    <p>React, HTML, CSS, JavaScript, jQuery</p>
+                </div>
+                <div>
+                    <h3>AI &amp; LLM</h3>
+                    <p>Azure OpenAI, Azure AI Search, RAG, vector search, Pinecone, OpenAI API</p>
+                </div>
+                <div>
+                    <h3>Cloud &amp; DevOps</h3>
+                    <p>Azure App Services, Functions, Service Bus, Entra ID, Blob and Table Storage, Azure DevOps, CI/CD
+                    </p>
+                </div>
+                <div>
+                    <h3>Practices</h3>
+                    <p>Agile/Scrum, API design, performance tuning, logging and monitoring, code review, documentation
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact" aria-labelledby="contact-h">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="label" style="color:inherit;opacity:.6">Contact</span>
+                    <h2 id="contact-h">Have an integration or AI feature to build?</h2>
+                    <p>I take on freelance work in .NET, React, Python and Azure. Send a short note about the project
+                        and timeline and I'll reply within a day.</p>
+                    <div class="rows">
+                        <div class="row"><span class="k">Email</span><span class="v"
+                                id="email">gupta.himanshu.6599@gmail.com</span><button class="copy" id="copy-email"
+                                type="button">Copy</button></div>
+                        <div class="row"><span class="k">LinkedIn</span><a class="v"
+                                href="https://www.linkedin.com/in/himanshu-gupta-leo" target="_blank"
+                                rel="noopener">linkedin.com/in/himanshu-gupta-leo</a></div>
+                    </div>
+                </div>
+                <form class="msg" id="msg-form" novalidate>
+                    <div class="two">
+                        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required
+                                maxlength="100"></label>
+                        <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email"
+                                required maxlength="200"></label>
+                    </div>
+                    <label for="f-topic">Topic<select id="f-topic" name="topic">
+                            <option>New project</option>
+                            <option>AI / LLM feature</option>
+                            <option>.NET or React work</option>
+                            <option>Azure integration</option>
+                            <option>Job opportunity</option>
+                            <option>Something else</option>
+                        </select></label>
+                    <label for="f-message">Message<textarea id="f-message" name="message" required maxlength="5000"
+                            placeholder="What are you building, and when do you need it?"></textarea></label>
+                    <div class="hp" aria-hidden="true"><label for="f-bot">Leave empty<input id="f-bot" name="botcheck"
+                                tabindex="-1" autocomplete="off"></label></div>
+                    <button class="send" id="f-send" type="submit">Send message</button>
+                    <p class="note" id="f-note" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        <footer><span>© 2026 Himanshu Gupta</span><span>Built with .NET habits and plain HTML</span></footer>
+    </div>
+
+    <script>
+        const P = [
+            {
+                c: "ABB", t: "AI meeting minutes automation", m: "Lead", tags: ["ai"],
+                d: "Turns Microsoft Teams transcripts into structured Minutes of Meeting using client Word templates, then publishes them to SharePoint with access limited to attendees. Includes recovery workflows, monitoring and separate CI/CD per service.",
+                s: ["Python", "Azure OpenAI", "Azure Functions", "Service Bus", "Microsoft Graph", "SharePoint"]
+            },
+            {
+                c: "ABB", t: "Technical support chatbot", m: "Led team of 4", tags: ["ai", "react"],
+                d: "Enterprise support bot searching five knowledge sources for product info, spare parts and technical documents. Added conversational context and clarifying questions; took it from prototype through client UAT and 25+ resolved defects.",
+                s: ["Python", "Azure OpenAI", "Azure AI Search", "Cosmos DB", "React", "Entra ID"]
+            },
+            {
+                c: "Camfil", t: "E-commerce platform & ERP integration", m: "−40% response time", tags: ["net", "react"],
+                d: "APIs moving data between ERP and Intershop, plus region- and channel-based localization. Built custom alerting that cut incident response time by 40% and owned production root-cause fixes.",
+                s: [".NET 6", "EF Core", "React", "Azure DevOps", "New Relic"]
+            },
+            {
+                c: "Acumant", t: "Internal HR chatbot", m: "−60% tickets", tags: ["ai", "react"],
+                d: "OpenAI-powered assistant with Pinecone vector search and ingestion for PDF, Excel, CSV, JSON and text files. Reduced HR support tickets by 60%.",
+                s: ["Python", "OpenAI API", "Pinecone", "React", "Azure"]
+            },
+            {
+                c: "Scania", t: "SharePoint & Table Storage connectors", m: "+20% fetch speed", tags: ["net", "react"],
+                d: "Reusable connectors and .NET Core REST APIs for system integration. Redesigned data fetching to run 20% faster; owned features from requirements to deployment.",
+                s: [".NET 8", "React", "Azure Table Storage", "SharePoint"]
+            },
+            {
+                c: "British Petroleum", t: "Well Connected System", m: "+30% tracking accuracy", tags: ["net", "react"],
+                d: "Led a module for tracking the lifecycle of active energy wells. Aggregated data from several sources and cut initial page load time.",
+                s: ["C#", ".NET Core", "React", "Unit testing"]
+            },
+            {
+                c: "British Petroleum", t: "Oracle to PostgreSQL migration", m: "−30% query time", tags: ["data"],
+                d: "Resolved compatibility issues between Oracle and PostgreSQL, tuned complex queries, and documented validation and post-migration testing.",
+                s: ["PostgreSQL", "Oracle", "SQL", "Azure DevOps"]
+            },
+            {
+                c: "Danish Agro", t: "Dynamics 365 custom pages", m: "Fewer clicks", tags: ["data"],
+                d: "Custom D365 web pages and external API integrations in JavaScript and jQuery that shortened common business workflows.",
+                s: ["JavaScript", "jQuery", "SQL Server", "D365"]
+            }
+        ];
+        const box = document.getElementById("projects");
+        const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+        function render(f) {
+            const list = P.filter(p => f === "all" || p.tags.includes(f));
+            box.innerHTML = list.length ? list.map(p => `<article class="proj"><header><span class="client">${esc(p.c)}</span><span class="metric">${esc(p.m)}</span></header><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><div class="stack">${p.s.map(x => `<span>${esc(x)}</span>`).join("")}</div></article>`).join("") : '<p class="empty">No projects in this category.</p>';
+        }
+        document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+            document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
+            render(b.dataset.f);
+            try { localStorage.setItem("hg-filter", b.dataset.f) } catch (e) { }
+        }));
+        let start = "all"; try { start = localStorage.getItem("hg-filter") || "all" } catch (e) { }
+        const sb = document.querySelector(`.chip[data-f="${start}"]`) || document.getElementById("f-all");
+        document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === sb));
+        render(sb.dataset.f);
+
+        document.getElementById("copy-email").addEventListener("click", e => {
+            const btn = e.currentTarget, txt = document.getElementById("email").textContent;
+            const done = () => { btn.textContent = "Copied"; setTimeout(() => btn.textContent = "Copy", 1600) };
+            const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("email")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; setTimeout(() => btn.textContent = "Copy", 1600) };
+            try { navigator.clipboard.writeText(txt).then(done, fallback) } catch (err) { fallback() }
+        });
+    </script>
+
+    <script>
+        // Paste your Web3Forms access key here (free at https://web3forms.com, use your Gmail address)
+        const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+        const form = document.getElementById("msg-form"), note = document.getElementById("f-note"), send = document.getElementById("f-send");
+        const say = (t, c) => { note.textContent = t; note.className = "note " + (c || "") };
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            const name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
+            if (!name || !email || !message) { say("Please fill in your name, email and message.", "err"); return }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("That email address doesn't look right. Check it and try again.", "err"); return }
+            if (form.botcheck.value) return;
+            send.disabled = true; send.textContent = "Sending…"; say("");
+            try {
+                const r = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+                    body: JSON.stringify({ access_key: WEB3FORMS_ACCESS_KEY, subject: `Portfolio: ${form.topic.value} from ${name}`, from_name: "Portfolio contact form", replyto: email, name, email, topic: form.topic.value, message })
+                });
+                const j = await r.json();
+                if (j.success) { form.reset(); say("Thanks, your message is on its way. I'll reply within a day.", "ok") }
+                else throw new Error(j.message);
+            } catch (err) { say("The message couldn't be sent. Please email gupta.himanshu.6599@gmail.com directly.", "err") }
+            finally { send.disabled = false; send.textContent = "Send message" }
+        });
+    </script>
+</body>
+
+</html>
